@@ -9,13 +9,13 @@ print(f'Starting time: {now.hour}:{now.minute}:{now.second}')
 
 # TODO: Add a proper Try Catch, checking if list isn't empty
 with open('dnf_quotes.json', 'r', encoding="utf8") as file:
-    data = json.load(file)
-    quote_list = [x['quote'] for x in data]
-    title_list = [x['title'] for x in data]
-    author_list = [x['author'] for x in data]
-    words_list = [x['words'] for x in data]
-    chapter_list = [x['chapter'] for x in data]
-    link_list = [x['link'] for x in data]
+    data_from_json = json.load(file)
+    quote_list = [key['quote'] for key in data_from_json]
+    title_list = [key['title'] for key in data_from_json]
+    author_list = [key['author'] for key in data_from_json]
+    words_list = [key['words'] for key in data_from_json]
+    chapter_list = [key['chapter'] for key in data_from_json]
+    link_list = [key['link'] for key in data_from_json]
 
 emails = open('emails.txt').read().splitlines()
 
@@ -56,18 +56,14 @@ words_list.pop(index)
 chapter_list.pop(index)
 link_list.pop(index)
 
-with open('dnf_quotes.json', 'r', encoding='utf8') as file:
-    data_test = json.load(file)
-    print(f'First: {len(data_test)}')
+for element in data_from_json:
+    if element == data_from_json[index]:
+        data_from_json.pop(data_from_json.index(element))
 
-for element in data_test:
-    if element == data_test[index]:
-        data_test.pop(data_test.index(element))
-
-print(f'Second: {len(data_test)}')
+print(f'Second: {len(data_from_json)}')
 
 with open('dnf_quotes.json', 'w', encoding='utf8') as file:
-    json.dump(data_test, file, indent=4)
+    json.dump(data_from_json, file, indent=4)
 
 if len(quote_list) > 0:
     print(f'Successfully deleted one record! Quotes left: {len(quote_list)}')
