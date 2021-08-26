@@ -2,10 +2,7 @@ import datetime as dt
 import json
 import random
 import smtplib
-
-# TODO: Find a way to store these safely
-MY_EMAIL = 'dailydnfquotes@gmail.com'
-PASSWORD = 'Dmaj7D6x2Aadd9Ax2'
+from keys import PASSWORD, MAIN_EMAIL
 
 now = dt.datetime.now()
 print(f'Starting time: {now.hour}:{now.minute}:{now.second}')
@@ -37,9 +34,9 @@ author_formatted = author_list[index].replace("\u2019", "'").replace("\u2018", "
 for mail in emails:
     with smtplib.SMTP('smtp.gmail.com') as connection:
         connection.starttls()
-        connection.login(user=MY_EMAIL, password=PASSWORD)
+        connection.login(user=MAIN_EMAIL, password=PASSWORD)
         connection.sendmail(
-            from_addr=MY_EMAIL,
+            from_addr=MAIN_EMAIL,
             to_addrs=mail,
             msg=f'SUBJECT:Daily DNF Quotes\n\n'
                 f'{dnf_quotes_formatted}\n\n\n'
