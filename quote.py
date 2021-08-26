@@ -1,5 +1,5 @@
-from json import JSONEncoder
 
+# TODO: Make a formatting system for all weird characters instead of doing it manually
 def replace(field):
     return field.replace("\u2019", "'").replace("\u2018", "'")
 

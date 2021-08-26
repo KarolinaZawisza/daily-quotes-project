@@ -8,6 +8,7 @@ from keys import PASSWORD, MAIN_EMAIL
 now = dt.datetime.now()
 print(f'Starting time: {now.hour}:{now.minute}:{now.second}')
 
+# TODO: Move it all to the DB
 # TODO: Add a proper Try Catch, checking if list isn't empty
 with open('dnf_quotes.json', 'r', encoding="utf8") as file:
     data_from_json = json.load(file)
@@ -24,8 +25,6 @@ with open('dnf_quotes.json', 'r', encoding="utf8") as file:
 emails = open('emails.txt').read().splitlines()
 
 chosen_quote = random.choice(quotes)
-
-# TODO: Make a formatting system for all weird characters instead of doing it manually
 
 # TODO: Make a feature which will check for a ratings
 # TODO: Different ratings will get quotes from different lists
@@ -46,7 +45,6 @@ for mail in emails:
         )
     print(f'Send email to {mail} - {now.hour}:{now.minute}:{now.second}')
 
-# TODO: DB
 quotes.remove(chosen_quote)
 
 with open('dnf_quotes.json', 'w', encoding='utf8') as file:
