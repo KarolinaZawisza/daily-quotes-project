@@ -22,7 +22,8 @@ with open('dnf_quotes.json', 'r', encoding="utf8") as file:
                       json_object['author'],
                       json_object['link'],
                       json_object['words'],
-                      json_object['chapter'])
+                      json_object['chapter'],
+                      json_object['nsfw'])
         quotes_list.append(quote)
 
 with open('emails.json', 'r') as file:
@@ -36,15 +37,17 @@ with open('emails.json', 'r') as file:
 
 chosen_quote = random.choice(quotes_list)
 
+# TODO: Add checking for quote rating and default
 for mail in range(0, len(emails_list)):
     receiver = emails_list[mail]
+    # if receiver.nsfw == chosen_quote.nsfw:
     with smtplib.SMTP('smtp.gmail.com') as connection:
         connection.starttls()
         connection.login(user=MAIN_EMAIL, password=PASSWORD)
         connection.sendmail(
             from_addr=MAIN_EMAIL,
             to_addrs=receiver.email,
-            msg=f'SUBJECT:Daily DNF Quotes\n\n'
+            msg=f'SUBJECT:Daily {get_rating(receiver.nsfw)} DNF Quotes\n\n'
                 f'{chosen_quote.quote}\n\n\n'
                 f'Title: "{chosen_quote.title}"\n'
                 f'Author: {chosen_quote.author}\n'
