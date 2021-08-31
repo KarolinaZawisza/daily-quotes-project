@@ -1,4 +1,6 @@
-# TODO: Find a safe way of storing these
-# That's a temporary solution, I promise
-MAIN_EMAIL = 'dailydnfquotes@gmail.com'
-PASSWORD = 'Dmaj7D6x2Aadd9Ax2'
+import os
+from dotenv import load_dotenv
+
+load_dotenv('C:/Users/zawis/Documents/EV/.env')
+MAIN_EMAIL = os.getenv('main_email')
+PASSWORD = os.getenv('main_email_password')

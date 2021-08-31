@@ -58,7 +58,7 @@ for mail in range(0, len(emails_list)):
                 f'Thank you for subscribing to Daily DNF Quotes with rating {get_rating(receiver.nsfw)}.\n'
                 f'If you would like to manage your subscription or rating settings,'
                 f' you can always contact us on Twitter!\n\n'
-                f'We hope that you liked your today quote and see you tomorrow! :)'
+                f'We hope that you liked your today quote and see you tomorrow! :)'.encode('UTF-8')
         )
     print(f'Send email to {receiver.name} ({receiver.email}) - {now.hour}:{now.minute}:{now.second}')
 
