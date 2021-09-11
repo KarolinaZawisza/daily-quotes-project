@@ -16,3 +16,13 @@ class Quote(dict):
                       words=words,
                       chapter=chapter,
                       nsfw=nsfw)
+
+    @staticmethod
+    def create_object_from_raw_data(json_object):
+        return Quote(json_object['quote'],
+                  json_object['title'],
+                  json_object['author'],
+                  json_object['link'],
+                  json_object['words'],
+                  json_object['chapter'],
+                  json_object['nsfw'])

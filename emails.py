@@ -14,3 +14,10 @@ class Email(dict):
                       email=email,
                       name=name,
                       nsfw=nsfw)
+
+    @staticmethod
+    def create_object_from_raw_data(json_object):
+        return Email(
+            json_object['email'],
+            json_object['name'],
+            json_object['nsfw'])
