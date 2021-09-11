@@ -17,22 +17,14 @@ with open('dnf_quotes.json', 'r', encoding="utf8") as file:
     data_from_json = json.load(file)
     quotes_list = []
     for json_object in data_from_json:
-        quote = Quote(json_object['quote'],
-                      json_object['title'],
-                      json_object['author'],
-                      json_object['link'],
-                      json_object['words'],
-                      json_object['chapter'],
-                      json_object['nsfw'])
+        quote = Quote.create_object_from_raw_data(json_object)
         quotes_list.append(quote)
 
 with open('emails.json', 'r') as file:
     emails_from_json = json.load(file)
     emails_list = []
     for json_object in emails_from_json:
-        json_email = Email(json_object['email'],
-                           json_object['name'],
-                           json_object['nsfw'])
+        json_email = Email.create_object_from_raw_data(json_object)
         emails_list.append(json_email)
 
 chosen_quote = random.choice(quotes_list)
